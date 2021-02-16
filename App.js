@@ -1,18 +1,93 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+// import react
+import React, { Component } from 'react';
+//firebase keys via .env
+import { API_KEY, AUTH_DOMAIN, PROJECT_ID, STORAGE_BUCKET, MESSAGING_SENDER_ID, APP_ID } from '@env';
+//import react native
+import { View, Text } from 'react-native';
+
+//import firebase
+import firebase from 'firebase/app';
+//import react navigation
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
+//import additional screens
 import LandingScreen from './components/auth/Landing';
+import RegisterScreen from './components/auth/Register';
 
-const Stack = createStackNavigator();
-export default function App() {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName='Landing'>
-        <Stack.Screen name='Landing' component={LandingScreen} options={{ headerShown: false }}/>
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
+//inialize firebase
+var firebaseConfig = {
+  apiKey: API_KEY,
+  authDomain: AUTH_DOMAIN,
+  projectId: PROJECT_ID,
+  storageBucket: STORAGE_BUCKET,
+  messagingSenderId: MESSAGING_SENDER_ID,
+  appId: APP_ID,
+};
+
+if(firebase.apps.length === 0){
+  firebase.initializeApp(firebaseConfig)
 }
+
+//create stack navigation
+const Stack = createStackNavigator();
+
+//App component with state
+export class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      loaded: false,
+    }
+  }
+
+  //check if user is logged in
+  componentDidMount(){
+    firebase.auth().onAuthStateChanged((user) => {
+      if(!user){
+        this.setState({
+          loggedIn: false,
+          loaded: true
+        })
+      }else {
+        this.setState({
+          loggedIn: true,
+          loaded: true
+        })
+      }
+    })
+  }
+  render() {
+    const { loggedIn, loaded } = this.state;
+    //if not loaded display loading message
+    if(!loaded){
+        return(
+          <View style={{ flex: 1, justifyContent: 'center'}}>
+            <Text>Loading</Text>
+          </View>
+        )
+    }
+    //if not logged in show this navigation
+    if(!loggedIn){
+      return (
+        <NavigationContainer>
+          <Stack.Navigator initialRouteName='Landing'>
+            <Stack.Screen name='Back' component={LandingScreen} options={{ headerShown: false }}/>
+            <Stack.Screen name='Register' component={RegisterScreen} options={{ title: 'MeterSpot' }} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      );
+    }
+    //if logged in say user logged in
+    return(
+      <View style={{ flex: 1, justifyContent: 'center'}}>
+        <Text>User is logged in</Text>
+      </View>
+    )
+   
+  }
+}
+
+export default App
+
 
