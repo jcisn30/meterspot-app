@@ -2,30 +2,27 @@
 import React, { Component } from 'react';
 //import react-native
 import { View, Button, Text, TouchableHighlight, StyleSheet, TextInput } from 'react-native';
-//import react-native-elements
-import { Input, Icon } from 'react-native-elements';
 
 //import firebase
 import firebase from 'firebase'
 
-//Register component with state
-export class Register extends Component {
+//Login Component with state
+export class Login extends Component {
     constructor(props){
         super(props);
 
         this.state = {
             email: '',
-            password: '',
-            name: ''
+            password: ''
         }
 
         this.onSignUp = this.onSignUp.bind(this)
     }
 
-    //firebase signup function
-    onSignUp(){
-        const { email, password, name } = this.state;
-        firebase.auth().createUserWithEmailAndPassword(email, password)
+    //firebase signin function
+    onSignIn(){
+        const { email, password } = this.state;
+        firebase.auth().signInWithEmailAndPassword(email, password)
         .then((result) => {
             console.log(result)
         })
@@ -37,34 +34,18 @@ export class Register extends Component {
     render() {
         return (
             <View>
-                <Input 
-                    placeholder="name"
-                    onChangeText={(name) => this.setState({name})}
-                    leftIcon={<Icon
-                    name='person'
-                    size={24}
-                  />}
-                />
-                <Input 
+                <TextInput 
                     placeholder="email"
                     onChangeText={(email) => this.setState({email})}
-                    leftIcon={<Icon
-                        name='email'
-                        size={24}
-                      />}
                 />
-                <Input 
+                <TextInput 
                     placeholder="password"
                     secureTextEntry={true}
                     onChangeText={(password) => this.setState({password})}
-                    leftIcon={<Icon
-                        name='lock'
-                        size={24}
-                      />}
                 />
-                <TouchableHighlight onPress={() => this.onSignUp()}>
+                <TouchableHighlight onPress={() => this.onSignIn()}>
               <View style={styles.button}>
-                <Text style={{textAlign:'center', color:'#fff', fontSize: 16}}>Sign Up</Text>
+                <Text style={{textAlign:'center', color:'#fff', fontSize: 16}}>Sign In</Text>
               </View>
               </TouchableHighlight>
             </View>
@@ -87,4 +68,4 @@ const styles = StyleSheet.create({
       }
 })
 
-export default Register;
+export default Login;
