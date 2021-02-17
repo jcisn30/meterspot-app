@@ -14,7 +14,19 @@ import { createStackNavigator } from '@react-navigation/stack';
 //import additional screens
 import LandingScreen from './components/auth/Landing';
 import RegisterScreen from './components/auth/Register';
+import MainScreen from './components/Main';
 
+//import provider
+import { Provider } from 'react-redux';
+//import create store and middleware
+import { createStore, applyMiddleware } from 'redux';
+//import root reducer
+import rootReducer from './redux/reducers';
+//import redux thunk
+import thunk from 'redux-thunk';
+
+//create store
+const store = createStore(rootReducer, applyMiddleware(thunk))
 //inialize firebase
 var firebaseConfig = {
   apiKey: API_KEY,
@@ -80,9 +92,9 @@ export class App extends Component {
     }
     //if logged in say user logged in
     return(
-      <View style={{ flex: 1, justifyContent: 'center'}}>
-        <Text>User is logged in</Text>
-      </View>
+      <Provider store={store}>
+        <MainScreen />
+      </Provider>
     )
    
   }

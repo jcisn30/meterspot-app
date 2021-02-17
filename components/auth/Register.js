@@ -6,7 +6,7 @@ import { View, Button, Text, TouchableHighlight, StyleSheet, TextInput } from 'r
 import { Input, Icon } from 'react-native-elements';
 
 //import firebase
-import firebase from 'firebase'
+import firebase from 'firebase';
 
 //Register component with state
 export class Register extends Component {
@@ -19,7 +19,7 @@ export class Register extends Component {
             name: ''
         }
 
-        this.onSignUp = this.onSignUp.bind(this)
+        this.onSignUp = this.onSignUp.bind(this);
     }
 
     //firebase signup function
@@ -27,6 +27,12 @@ export class Register extends Component {
         const { email, password, name } = this.state;
         firebase.auth().createUserWithEmailAndPassword(email, password)
         .then((result) => {
+            firebase.firestore().collection("users")
+                .doc(firebase.auth().currentUser.uid)
+                .set({
+                    name,
+                    email
+                })
             console.log(result)
         })
         .catch((error) => {
