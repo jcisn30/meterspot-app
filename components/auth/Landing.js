@@ -44,12 +44,17 @@ export default function Landing( { navigation } ) {
           {/* Screen 1 */}
           <View style={{width, height}}>
             <View style={{height:350}}>
-            <Text style={{fontSize:38, textAlign:'center', marginTop:150, color:'#2b3e50'}}>MeterSp<MaterialCommunityIcons name="map-marker-radius" size={34} color="black" />t</Text>
+            <Text style={{fontSize:38, textAlign:'center', marginTop:'30%', color:'#2b3e50'}}>MeterSp<MaterialCommunityIcons name="map-marker-radius" size={34} color="black" />t</Text>
               <Image source={require('../../assets/landing-page-1.png')} style={styles.imageStyle} />
-              <Text style={{fontSize:18, marginBottom:20, paddingLeft:60, paddingRight:60, textAlign: 'center'}}>MeterSpot makes it easy to find an open parking meter.</Text>
+              <Text style={{fontSize:20, marginBottom:20, paddingLeft:60, paddingRight:60, textAlign: 'center'}}>MeterSpot makes it easy to find an open parking meter.</Text>
               <TouchableOpacity onPress={() => navigation.navigate('Register') }>
               <View style={styles.button}>
-                <Text style={{textAlign:'center', color:'#fff', fontSize: 16}}>Get Started</Text>
+                <Text style={{textAlign:'center', color:'#fff', fontSize: 20, fontWeight: '600'}}>Get Started</Text>
+              </View>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => navigation.navigate('Login') }>
+              <View style={styles.button2}>
+                <Text style={{textAlign:'center', color:'#2b3e50', fontSize: 20, fontWeight: '600'}}>Login</Text>
               </View>
               </TouchableOpacity>
             </View>
@@ -58,12 +63,17 @@ export default function Landing( { navigation } ) {
           {/* screen 2 */}
           <View style={{ width, height }}>
           <View style={{height:350}}>
-            <Text style={{fontSize:38, textAlign:'center', marginTop:150}}>MeterSp<MaterialCommunityIcons name="map-marker-radius" size={36} color="black" />t</Text>
+            <Text style={{fontSize:38, textAlign:'center', marginTop:'30%'}}>MeterSp<MaterialCommunityIcons name="map-marker-radius" size={36} color="black" />t</Text>
               <Image source={require('../../assets/landing-page-2.png')} style={styles.imageStyle} />
-              <Text style={{fontSize:18, marginBottom:20, paddingLeft:80, paddingRight:80, textAlign: 'center'}}>MeterSpot can help save you time and money!</Text>
+              <Text style={{fontSize:20, marginBottom:20, paddingLeft:80, paddingRight:80, textAlign: 'center'}}>MeterSpot can help save you time and money!</Text>
               <TouchableOpacity onPress={() => navigation.navigate('Register') }>
               <View style={styles.button}>
-                <Text style={{textAlign:'center', color:'#fff', fontSize: 16}}>Get Started</Text>
+                <Text style={{textAlign:'center', color:'#fff', fontSize: 20, fontWeight: '600'}}>Get Started</Text>
+              </View>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => navigation.navigate('Login') }>
+              <View style={styles.button2}>
+                <Text style={{textAlign:'center', color:'#2b3e50', fontSize: 20, fontWeight: '600'}}>Login</Text>
               </View>
               </TouchableOpacity>
             </View>
@@ -101,9 +111,15 @@ const styles = StyleSheet.create({
     elevation: 2, // Android
     borderRadius: 50
   },
+  button2: {
+    backgroundColor: '#fff',
+    padding: 15,
+    marginLeft: '25%',
+    marginRight: '25%',
+  },
   paginationWrapper: {
     position: 'absolute',
-    bottom: 150,
+    bottom: '15%',
     left: 0,
     right: 0,
     justifyContent: 'center',
