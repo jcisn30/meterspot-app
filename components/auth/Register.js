@@ -1,12 +1,13 @@
 //import react
 import React, { Component } from 'react';
 //import react-native
-import { View, Button, Text, TouchableHighlight, StyleSheet, TextInput } from 'react-native';
+import { View, Button, Text, StyleSheet, TextInput, SafeAreaView } from 'react-native';
 //import react-native-elements
 import { Input, Icon } from 'react-native-elements';
 
 //import firebase
 import firebase from 'firebase';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 //Register component with state
 export class Register extends Component {
@@ -42,7 +43,8 @@ export class Register extends Component {
 
     render() {
         return (
-            <View>
+        <SafeAreaView style={{ flex: 1, backgroundColor: '#ffffff' }}>
+            <View style={{marginTop: '20%'}}>
                 <Input 
                     placeholder="name"
                     onChangeText={(name) => this.setState({name})}
@@ -68,12 +70,13 @@ export class Register extends Component {
                         size={24}
                       />}
                 />
-                <TouchableHighlight onPress={() => this.onSignUp()}>
-              <View style={styles.button}>
-                <Text style={{textAlign:'center', color:'#fff', fontSize: 16}}>Sign Up</Text>
-              </View>
-              </TouchableHighlight>
+            <TouchableOpacity onPress={() => this.onSignUp()}>
+                <View style={styles.button}>
+                    <Text style={{textAlign:'center', color:'#fff', fontSize: 16}}>Sign Up</Text>
+                </View>
+              </TouchableOpacity>
             </View>
+        </SafeAreaView>
         )
     }
 }

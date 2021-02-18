@@ -2,6 +2,11 @@
 import React, { Component } from 'react';
 //import react native
 import { Text, View } from 'react-native';
+//import bottom tab navigator
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+//import icons
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+
 
 //import connect react-redux
 import { connect } from 'react-redux';
@@ -10,21 +15,62 @@ import { bindActionCreators } from 'redux';
 //import fetchuser
 import { fetchUser } from '../redux/actions/index';
 
+//import additional screens
+import MapScreen from './main/map';
+import ProfileScreen from './main/profile';
+
+//create bottom tab navigator
+const Tab = createMaterialBottomTabNavigator();
+
+//create empty screen
+const EmptyScreen = () => {
+    return(null);
+}
 export class Main extends Component {
     componentDidMount(){
         this.props.fetchUser();
     }
     render() {
-        const { currentUser } = this.props;
-        if (currentUser == undefined) {
-            return (
-                <View></View>
-            )
-        }
         return (
-            <View style={{ flex: 1, justifyContent: 'center'}}>
-                <Text>{ currentUser.name } is logged in</Text>
-            </View>
+            <Tab.Navigator initialRouteName="Map" labeled={false} barStyle={{ backgroundColor: '#2b3e50', paddingBottom: '2%' }}>
+                
+                <Tab.Screen name="Map" component={MapScreen} 
+                options={{
+                    tabBarIcon: ({ color, size }) => (
+                        <MaterialCommunityIcons
+                    name='map'
+                    color={color}
+                    size={28}
+                  />
+                    )
+                }}/>
+                <Tab.Screen name="KeenContainer" component={EmptyScreen} 
+                listeners={({ navigation }) =>({
+                    tabPress: event => {
+                        event.preventDefault();
+                        navigation.navigate('Keen') 
+                    }
+                })}
+                options={{
+                    tabBarIcon: ({ color, size }) => (
+                        <MaterialCommunityIcons
+                    name='message-text'
+                    color={color}
+                    size={28}
+                  />
+                    )
+                }}/>
+                <Tab.Screen name="Profile" component={ProfileScreen} 
+                options={{
+                    tabBarIcon: ({ color, size }) => (
+                        <MaterialCommunityIcons
+                    name='account'
+                    color={color}
+                    size={28}
+                  />
+                    )
+                }}/>
+            </Tab.Navigator>
         )
     }
 }

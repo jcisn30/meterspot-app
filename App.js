@@ -7,6 +7,8 @@ import { View, Text } from 'react-native';
 
 //import firebase
 import firebase from 'firebase/app';
+import 'firebase/firestore';
+
 //import react navigation
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -14,7 +16,9 @@ import { createStackNavigator } from '@react-navigation/stack';
 //import additional screens
 import LandingScreen from './components/auth/Landing';
 import RegisterScreen from './components/auth/Register';
+import LoginScreen from './components/auth/Login';
 import MainScreen from './components/Main';
+import KeenScreen from './components/main/keen';
 
 //import provider
 import { Provider } from 'react-redux';
@@ -85,7 +89,8 @@ export class App extends Component {
         <NavigationContainer>
           <Stack.Navigator initialRouteName='Landing'>
             <Stack.Screen name='Back' component={LandingScreen} options={{ headerShown: false }}/>
-            <Stack.Screen name='Register' component={RegisterScreen} options={{ title: 'MeterSpot' }} />
+            <Stack.Screen name='Register' component={RegisterScreen} options={{ title: 'MeterSpot', headerTransparent: true, headerTintColor: '#2b3e50', headerTitleStyle: { color: '#2b3e50' } }} />
+            <Stack.Screen name='Login' component={LoginScreen} options={{ title: 'MeterSpot', headerTransparent: true, headerTintColor: '#2b3e50', headerTitleStyle: { color: '#2b3e50' } }} />
           </Stack.Navigator>
         </NavigationContainer>
       );
@@ -93,7 +98,12 @@ export class App extends Component {
     //if logged in say user logged in
     return(
       <Provider store={store}>
-        <MainScreen />
+        <NavigationContainer>
+          <Stack.Navigator initialRouteName='Landing'>
+            <Stack.Screen name='Main' component={MainScreen} options={{ headerShown: false }}/>
+            <Stack.Screen name='Keen' component={KeenScreen} options={{  title: 'MeterSpot', headerTransparent: true, headerTintColor: '#2b3e50', headerTitleStyle: { color: '#2b3e50' }, gestureDirection: 'vertical-inverted'}}/>
+          </Stack.Navigator>
+        </NavigationContainer>
       </Provider>
     )
    
