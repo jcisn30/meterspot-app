@@ -18,6 +18,7 @@ import LandingScreen from './components/auth/Landing';
 import RegisterScreen from './components/auth/Register';
 import LoginScreen from './components/auth/Login';
 import MainScreen from './components/Main';
+import SkipMainScreen from './components/SkipMain';
 import KeenScreen from './components/main/keen';
 
 //import provider
@@ -86,13 +87,17 @@ export class App extends Component {
     //if not logged in show this navigation
     if(!loggedIn){
       return (
+        <Provider store={store}>
         <NavigationContainer>
           <Stack.Navigator initialRouteName='Landing'>
             <Stack.Screen name='Back' component={LandingScreen} options={{ headerShown: false }}/>
             <Stack.Screen name='Register' component={RegisterScreen} options={{ title: 'MeterSpot', headerTransparent: true, headerTintColor: '#2b3e50', headerTitleStyle: { color: '#2b3e50' } }} />
             <Stack.Screen name='Login' component={LoginScreen} options={{ title: 'MeterSpot', headerTransparent: true, headerTintColor: '#2b3e50', headerTitleStyle: { color: '#2b3e50' } }} />
+            <Stack.Screen name='SkipMain' component={SkipMainScreen} options={{ headerShown: false }}/>
+            <Stack.Screen name='Keen' component={KeenScreen} options={{  title: 'MeterSpot', headerTransparent: true, headerTintColor: '#2b3e50', headerTitleStyle: { color: '#2b3e50' }, gestureDirection: 'vertical-inverted'}}/>
           </Stack.Navigator>
         </NavigationContainer>
+        </Provider>
       );
     }
     //if logged in say user logged in

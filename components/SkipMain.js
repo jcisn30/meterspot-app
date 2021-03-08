@@ -28,9 +28,7 @@ const Tab = createMaterialBottomTabNavigator();
 //     return(null);
 // }
 export class Main extends Component {
-    componentDidMount(){
-        this.props.fetchUser();
-    }
+    
     render() {
         return (
             <Tab.Navigator initialRouteName="Map" labeled={false} barStyle={{ backgroundColor: '#2b3e50', paddingBottom: '2%' }}>
@@ -76,10 +74,6 @@ export class Main extends Component {
     }
 }
 
-const mapStateToProps = (store) => ({
-    currentUser: store.userState.currentUser
-})
 
-const mapDispatchProps = (dispatch) => bindActionCreators({fetchUser}, dispatch);
 
-export default connect(mapStateToProps, mapDispatchProps)(Main);
+export default Main;
