@@ -37,7 +37,7 @@ export class Register extends Component {
             console.log(result)
         })
         .catch((error) => {
-            console.log(error)
+            Alert.alert(error.message)
         })
     }
 

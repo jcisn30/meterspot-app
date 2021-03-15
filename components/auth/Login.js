@@ -1,7 +1,7 @@
 //import react
 import React, { Component } from 'react';
 //import react-native
-import { View, Button, Text, StyleSheet, TextInput, SafeAreaView } from 'react-native';
+import { View, Button, Text, StyleSheet, TextInput, SafeAreaView, Alert } from 'react-native';
 //import react-native-elements
 import { Input, Icon } from 'react-native-elements';
 
@@ -22,6 +22,8 @@ export class Login extends Component {
         this.onSignIn = this.onSignIn.bind(this)
     }
 
+    
+
     //firebase signin function
     onSignIn(){
         const { email, password } = this.state;
@@ -30,7 +32,9 @@ export class Login extends Component {
             console.log(result)
         })
         .catch((error) => {
-            console.log(error)
+            Alert.alert(error.message)
+            
+    
         })
     }
 

@@ -19,7 +19,7 @@ import RegisterScreen from './components/auth/Register';
 import LoginScreen from './components/auth/Login';
 import MainScreen from './components/Main';
 import SkipMainScreen from './components/SkipMain';
-import KeenScreen from './components/main/keen';
+// import KeenScreen from './components/main/keen';
 
 //import provider
 import { Provider } from 'react-redux';
@@ -94,7 +94,7 @@ export class App extends Component {
             <Stack.Screen name='Register' component={RegisterScreen} options={{ title: 'MeterSpot', headerTransparent: true, headerTintColor: '#2b3e50', headerTitleStyle: { color: '#2b3e50' } }} />
             <Stack.Screen name='Login' component={LoginScreen} options={{ title: 'MeterSpot', headerTransparent: true, headerTintColor: '#2b3e50', headerTitleStyle: { color: '#2b3e50' } }} />
             <Stack.Screen name='SkipMain' component={SkipMainScreen} options={{ headerShown: false }}/>
-            <Stack.Screen name='Keen' component={KeenScreen} options={{  title: 'MeterSpot', headerTransparent: true, headerTintColor: '#2b3e50', headerTitleStyle: { color: '#2b3e50' }, gestureDirection: 'vertical-inverted'}}/>
+            {/* <Stack.Screen name='Keen' component={KeenScreen} options={{  title: 'MeterSpot', headerTransparent: true, headerTintColor: '#2b3e50', headerTitleStyle: { color: '#2b3e50' }, gestureDirection: 'vertical-inverted'}}/> */}
           </Stack.Navigator>
         </NavigationContainer>
         </Provider>
@@ -106,7 +106,7 @@ export class App extends Component {
         <NavigationContainer>
           <Stack.Navigator initialRouteName='Landing'>
             <Stack.Screen name='Main' component={MainScreen} options={{ headerShown: false }}/>
-            <Stack.Screen name='Keen' component={KeenScreen} options={{  title: 'MeterSpot', headerTransparent: true, headerTintColor: '#2b3e50', headerTitleStyle: { color: '#2b3e50' }, gestureDirection: 'vertical-inverted'}}/>
+            {/* <Stack.Screen name='Keen' component={KeenScreen} options={{  title: 'MeterSpot', headerTransparent: true, headerTintColor: '#2b3e50', headerTitleStyle: { color: '#2b3e50' }, gestureDirection: 'vertical-inverted'}}/> */}
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>
