@@ -1,7 +1,7 @@
 //import react
 import React, { Component } from 'react';
 //import react-native
-import { View, Button, Text, StyleSheet, TextInput, SafeAreaView } from 'react-native';
+import { View, Button, Text, StyleSheet, TextInput, SafeAreaView, Alert } from 'react-native';
 //import react-native-elements
 import { Input, Icon } from 'react-native-elements';
 
