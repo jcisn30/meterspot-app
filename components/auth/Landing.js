@@ -49,7 +49,7 @@ export default function Landing( { navigation } ) {
             
             <View style={{height:350}}>
             <Image source={require('../../assets/logo.png')} style={styles.imageStyleB} />
-              <Image source={require('../../assets/landing-page-1.png')} style={styles.imageStyle} />
+              <Image source={require('../../assets/animation_500_kmfqiuts.gif')} style={styles.imageStyle} />
               <Text style={{fontSize:20, marginBottom:20, paddingLeft:60, paddingRight:60, textAlign: 'center'}}>MeterSpot makes it easy to find an open parking meter.</Text>
               <TouchableOpacity onPress={() => navigation.navigate('Register') }>
               <View style={styles.button}>
@@ -72,7 +72,7 @@ export default function Landing( { navigation } ) {
 
           <View style={{height:350}}>
             <Image source={require('../../assets/logo.png')} style={styles.imageStyleB} />
-              <Image source={require('../../assets/landing-page-2.png')} style={styles.imageStyle} />
+              <Image source={require('../../assets/animation_500_kmfqpu2f.gif')} style={styles.imageStyleA} />
               <Text style={{fontSize:20, marginBottom:20, paddingLeft:80, paddingRight:80, textAlign: 'center'}}>MeterSpot can help save you time and money!</Text>
               <TouchableOpacity onPress={() => navigation.navigate('Register') }>
               <View style={styles.button}>
@@ -110,16 +110,21 @@ const styles = StyleSheet.create({
     fontSize: 20
   },
   imageStyle: {
-    height: '100%',
-    width: '100%',
+    height: '60%',
+    width: '90%',
     margin: 'auto'
+  },
+  imageStyleA: {
+    height: '60%',
+    width: '50%',
+    marginLeft: '20%'
   },
   imageStyleB: {
     height: 80,
     width: '65%',
     marginLeft: 'auto',
     marginRight: 'auto',
-    marginTop: '20%'
+    marginTop: '40%'
   },
   button: {
     backgroundColor: '#2b3e50',
@@ -141,7 +146,7 @@ const styles = StyleSheet.create({
   },
   paginationWrapper: {
     position: 'absolute',
-    bottom: '15%',
+    bottom: '5%',
     left: 0,
     right: 0,
     justifyContent: 'center',
