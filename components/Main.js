@@ -19,6 +19,7 @@ import { fetchUser } from '../redux/actions/index';
 import MapScreen from './main/map';
 import ProfileScreen from './main/profile';
 import KeenScreen from './main/keen';
+import SaveScreen from './main/save';
 
 //create bottom tab navigator
 const Tab = createMaterialBottomTabNavigator();
@@ -33,7 +34,7 @@ export class Main extends Component {
     }
     render() {
         return (
-            <Tab.Navigator initialRouteName="Map" labeled={false} barStyle={{ backgroundColor: '#2b3e50', paddingBottom: '2%' }}>
+            <Tab.Navigator initialRouteName="Map" labeled={false} barStyle={{ backgroundColor: '#fff', paddingBottom: '2%' }}>
                 
                 <Tab.Screen name="Map" component={MapScreen} 
                 options={{
@@ -61,6 +62,24 @@ export class Main extends Component {
                   />
                     )
                 }}/>
+
+                <Tab.Screen name="Save" component={SaveScreen} 
+                // listeners={({ navigation }) =>({
+                //     tabPress: event => {
+                //         event.preventDefault();
+                //         navigation.navigate('Keen') 
+                //     }
+                // })}
+                options={{
+                    tabBarIcon: ({ color, size }) => (
+                        <MaterialCommunityIcons
+                    name='message-text'
+                    color={color}
+                    size={28}
+                  />
+                    )
+                }}/>
+                 
                 <Tab.Screen name="Profile" component={ProfileScreen} 
                 options={{
                     tabBarIcon: ({ color, size }) => (

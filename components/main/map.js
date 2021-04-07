@@ -1,9 +1,14 @@
 //import react
 import React, { Component } from 'react';
 //import react-native
-import { StyleSheet, Text, View, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, SafeAreaView } from 'react-native';
 //import react-native maps
 import MapView, { Marker } from "react-native-maps";
+
+import { SearchBar } from 'react-native-elements';
+
+import { StatusBar } from 'expo-status-bar';
+
 
 
 export class Map extends Component {
@@ -31,9 +36,19 @@ export class Map extends Component {
     render() {
       
     return (
-        <View style={styles.container}>
-          <Text style={styles.heading}>MeterSpot</Text>
+      
         
+        <View style={styles.container}>
+         
+          
+          <View style={styles.search}>
+          <SearchBar  containerStyle={{backgroundColor: '#fff'}} platform={Platform.OS}
+          clearIcon={true} inputContainerStyle={{backgroundColor:'#fff'}}
+          inputStyle={{backgroundColor: '#fff'}} buttonStyle={{}} placeholder="Current Location"/>
+         
+          </View>
+          
+          <StatusBar style="dark" />
             <MapView style={styles.mapview} 
                 showsUserLocation={true}
                 showsBuildings={true}
@@ -56,6 +71,7 @@ export class Map extends Component {
                 ))}
            </MapView>
         </View>
+        
    )
 }
 }
@@ -64,16 +80,23 @@ export class Map extends Component {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#2b3e50',
+      backgroundColor: '#ffffff',
       alignItems: 'center',
       justifyContent: 'center',
-      marginTop: 0
+      marginTop: 0,
+      color: '#000'
     },
     heading:{
-      marginTop: 40,
+      marginTop: 0,
       fontSize: 30,
-      marginBottom: 10,
+      marginBottom: 0,
       color: '#fff'
+    },
+    search: {
+      width:'95%',
+      color: '#fff',
+      marginTop: 35,
+      alignSelf: 'flex-start'
     },
     mapview: {
       width: Dimensions.get('window').width,

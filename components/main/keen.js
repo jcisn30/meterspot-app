@@ -1,29 +1,76 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { View, Title, Screen, Text } from 'react-native';
 import ReactNative from 'react-native';
-import { GiftedChat } from 'react-native-gifted-chat';
+import { GiftedChat, Bubble } from 'react-native-gifted-chat';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
-// import Messages from '../containers/Messages';
-// import Input from '../containers/Input';
-import { sendMessage } from '../../redux/actions';
 
-const mapStateToProps = (state) => ({
-    chatHeight: state.chatroom.meta.height,
-    user: state.user
-});
 
-class Keen extends Component {
+import firebase from 'firebase'
+//import connect react-redux
+import { useSelector } from 'react-redux'
+//import fetchuser
+import { fetchMessages } from '../../redux/actions/index';
+import messages from '../../redux/reducers/messages';
+require('firebase/firestore')
+
+export default function Keen() {
+    //message array state
+    const [messageList, setMessageList] = useState(Array());
+    const [text, setText] = useState("")
+
+    useEffect(() => {
+        const subscriber = firebase.firestore()
+        firebase.firestore()
+        .collection('messages-lincoln')
+        .onSnapshot(querySnapshot => {
+            const messageList = Array();
+            querySnapshot.forEach(documentSnapshot => {
+              messageList.push({
+                ...documentSnapshot.data(),
+                key: documentSnapshot.id,
+              });
+            });
+            setMessageList(messageList);
+            console.log(messageList);
+            // Unsubscribe from events when no longer in use
+        
+          });
+          return () => subscriber();
+      }, Array());
     
 
-    
 
-    render() {
+      
+  
+    
+    const Key = Math.random().toString(36).slice(2); 
+    
+        const onCommentSend = () => {
+             
+            firebase.firestore()
+                .collection('messages')
+                .doc('lincoln')
+                .collection(Key)
+                .doc('message')
+                .set({
+                    text: text,
+
+                })
+            }
+
+             
+        
         return (
-          <GiftedChat />
+          <GiftedChat 
+          messages={messageList}
+          onInputTextChanged={(text) => setText(text)}
+          onSend={onCommentSend}
+        
+          />
+          
         )
     }
-}
 
-export default connect(mapStateToProps)(Keen);
+    
