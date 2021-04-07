@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
   imageStyleA: {
     height: '60%',
     width: '50%',
-    marginLeft: '20%'
+    marginLeft: '23%'
   },
   imageStyleB: {
     height: 80,

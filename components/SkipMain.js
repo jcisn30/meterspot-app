@@ -19,6 +19,8 @@ import { fetchUser } from '../redux/actions/index';
 import MapScreen from './main/map';
 import ProfileScreen from './main/profile';
 import KeenScreen from './main/keen';
+import { StatusBar } from 'react-native';
+import { SafeAreaView } from 'react-native';
 
 //create bottom tab navigator
 const Tab = createMaterialBottomTabNavigator();
@@ -31,8 +33,9 @@ export class Main extends Component {
     
     render() {
         return (
-            <Tab.Navigator initialRouteName="Map" labeled={false} barStyle={{ backgroundColor: '#2b3e50', paddingBottom: '2%' }}>
-                
+            
+            <Tab.Navigator initialRouteName="Map" labeled={false} barStyle={{ backgroundColor: '#ffffff', paddingBottom: '1%' }}>
+               
                 <Tab.Screen name="Map" component={MapScreen} 
                 options={{
                     tabBarIcon: ({ color, size }) => (
@@ -70,6 +73,7 @@ export class Main extends Component {
                     )
                 }}/>
             </Tab.Navigator>
+            
         )
     }
 }

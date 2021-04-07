@@ -2,12 +2,12 @@
 import { combineReducers } from 'redux';
 //import user
 import { user } from './users';
-import chatroom from './chatroom';
+import messages from './messages';
 
 
 const Reducers = combineReducers({
     userState: user,
-    chatroom
+    messages
 })
 
 export default Reducers;

@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 //firebase keys via .env
 import { API_KEY, AUTH_DOMAIN, PROJECT_ID, STORAGE_BUCKET, MESSAGING_SENDER_ID, APP_ID } from '@env';
 //import react native
-import { View, Text } from 'react-native';
+import { View, Text, StatusBar } from 'react-native';
 
 //import firebase
 import firebase from 'firebase/app';
@@ -29,6 +29,10 @@ import { createStore, applyMiddleware } from 'redux';
 import rootReducer from './redux/reducers';
 //import redux thunk
 import thunk from 'redux-thunk';
+import { SafeAreaView } from 'react-native';
+
+
+import AnimatedSplash from "react-native-animated-splash-screen";
 
 //create store
 const store = createStore(rootReducer, applyMiddleware(thunk))
@@ -59,21 +63,23 @@ export class App extends Component {
   }
 
   //check if user is logged in
-  componentDidMount(){
+   componentDidMount(){
     firebase.auth().onAuthStateChanged((user) => {
       if(!user){
         this.setState({
           loggedIn: false,
-          loaded: true
+          loaded: true,
         })
       }else {
         this.setState({
           loggedIn: true,
-          loaded: true
+          loaded: true,
         })
       }
     })
   }
+
+  
   render() {
     const { loggedIn, loaded } = this.state;
     //if not loaded display loading message
@@ -87,17 +93,21 @@ export class App extends Component {
     //if not logged in show this navigation
     if(!loggedIn){
       return (
+        
         <Provider store={store}>
+          <StatusBar barStyle="dark-content" />
         <NavigationContainer>
+        
           <Stack.Navigator initialRouteName='Landing'>
             <Stack.Screen name='Back' component={LandingScreen} options={{ headerShown: false }}/>
             <Stack.Screen name='Register' component={RegisterScreen} options={{ title: 'MeterSpot', headerTransparent: true, headerTintColor: '#2b3e50', headerTitleStyle: { color: '#2b3e50' } }} />
             <Stack.Screen name='Login' component={LoginScreen} options={{ title: 'MeterSpot', headerTransparent: true, headerTintColor: '#2b3e50', headerTitleStyle: { color: '#2b3e50' } }} />
-            <Stack.Screen name='SkipMain' component={SkipMainScreen} options={{ headerShown: false }}/>
+            <Stack.Screen name='SkipMain' component={SkipMainScreen} options={{ headerShown: false,}}/>
             {/* <Stack.Screen name='Keen' component={KeenScreen} options={{  title: 'MeterSpot', headerTransparent: true, headerTintColor: '#2b3e50', headerTitleStyle: { color: '#2b3e50' }, gestureDirection: 'vertical-inverted'}}/> */}
           </Stack.Navigator>
         </NavigationContainer>
         </Provider>
+        
       );
     }
     //if logged in say user logged in
